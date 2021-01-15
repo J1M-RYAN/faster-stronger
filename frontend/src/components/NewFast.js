@@ -2,18 +2,7 @@ import { React, useState } from 'react';
 import { Container, Row, Col, Form, Button, Collapse } from 'react-bootstrap';
 const NewFast = () => {
 	const [isEndTimeChosen, setIsEndTimeChosen] = useState(false);
-	const handleTimeChosen = (event) => {
-		if (isEndTimeChosen) {
-			return;
-		}
-		setIsEndTimeChosen(true);
-	};
-	const handleTimeNotChosen = (event) => {
-		if (!isEndTimeChosen) {
-			return;
-		}
-		setIsEndTimeChosen(false);
-	};
+
 	return (
 		<Container className='py-3'>
 			<h2>
@@ -51,7 +40,7 @@ const NewFast = () => {
 						id=''
 						label='Yes'
 						checked={isEndTimeChosen}
-						onChange={handleTimeChosen}
+						onChange={() => setIsEndTimeChosen(true)}
 					/>
 				</Col>
 				<Col sm='2' xs='1'>
@@ -60,7 +49,7 @@ const NewFast = () => {
 						id='Female'
 						label='No'
 						checked={!isEndTimeChosen}
-						onChange={handleTimeNotChosen}
+						onChange={() => setIsEndTimeChosen(false)}
 					/>
 				</Col>
 			</Form.Group>

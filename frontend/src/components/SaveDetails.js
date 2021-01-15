@@ -27,18 +27,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 		event.preventDefault();
 		setAge(event.target.value);
 	};
-	const handleMale = (event) => {
-		if (isMale) {
-			return;
-		}
-		setIsMale(true);
-	};
-	const handleFemale = (event) => {
-		if (!isMale) {
-			return;
-		}
-		setIsMale(false);
-	};
+
 	const handleUnitChange = (event) => {
 		if (unitOfHeight === event.target.value) return;
 		setUnitOfHeight(event.target.value);
@@ -178,7 +167,9 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 									type='radio'
 									id='Male'
 									label='Male'
-									onChange={handleMale}
+									onChange={() => {
+										setIsMale(true);
+									}}
 									checked={isMale}
 								/>
 							</Col>
@@ -187,7 +178,9 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 									type='radio'
 									id='Female'
 									label='Female'
-									onChange={handleFemale}
+									onChange={() => {
+										setIsMale(false);
+									}}
 									checked={!isMale}
 								/>
 							</Col>
