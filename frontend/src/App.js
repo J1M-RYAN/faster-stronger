@@ -10,6 +10,7 @@ const dogApiUrl = 'https://dog.ceo/api/breeds/image/random';
 const App = () => {
 	const [dogData, setDogData] = useState({});
 	const [userData, setUserData] = useState({});
+	const [enoughInfo, setEnoughInfo] = useState(false);
 	useEffect(() => {
 		getDogImage();
 	}, []);
@@ -22,9 +23,18 @@ const App = () => {
 		<>
 			<Header />
 			<main>
-				<BMI userData={userData} />
-				<Settings setUserData={setUserData} />
-				<SaveDetails setUserData={setUserData} />
+				<BMI
+					userData={userData}
+					enoughInfo={enoughInfo}
+					setEnoughInfo={setEnoughInfo}
+				/>
+				<Settings
+					setUserData={setUserData}
+					setEnoughInfo={setEnoughInfo}
+					userData={userData}
+					enoughInfo={enoughInfo}
+				/>
+				<SaveDetails setUserData={setUserData} setEnoughInfo={setEnoughInfo} />
 				<Container className='py-3'>
 					<Row xs={2} sm={3} md={4}>
 						{[...Array(20)].map((e, i) => (

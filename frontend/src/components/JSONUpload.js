@@ -1,46 +1,49 @@
-import React, { useState, useRef } from 'react';
+import { React, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Popup from './Popup';
+
 const JSONUpload = ({ setUserData }) => {
-	const [json, setJson] = useState({});
-	const inputFile = useRef(null);
+	const [showPopup, setShowPopup] = useState(false);
+	const [fileData, setFileData] = useState('');
+	const [fileChosen, setfileChosen] = useState(false);
+	const handleFileUpload = (event) => {
+		event.preventDefault();
+		setfileChosen(true);
+		const file = event.target.files[0];
+		const reader = new FileReader();
+		console.log('here');
+		reader.onload = (event) => {
+			// The file's text will be printed here
+			setFileData(event.target.result);
+		};
 
-	const handleFileUpload = (e) => {
-		const { files } = e.target;
-		if (files && files.length) {
-			const filename = files[0].name;
-
-			var parts = filename.split('.');
-			const fileType = parts[parts.length - 1];
-			console.log('fileType', fileType);
-
-			setJson(files[0]);
-			readText(json);
-		}
+		reader.readAsText(file);
+	};
+	const saveFile = () => {
+		localStorage.setItem('userData', fileData);
+		setUserData(JSON.parse(localStorage.getItem('userData')));
+		togglePopup();
+	};
+	const togglePopup = () => {
+		setShowPopup(!showPopup);
+		setfileChosen(false);
 	};
 
-	const onButtonClick = () => {
-		inputFile.current.click();
-	};
-
-	const readText = async (file) => {
-		const text = new Response(file);
-		localStorage.setItem('userData', text);
-		setUserData(JSON.parse(JSON.stringify(localStorage.getItem('userData'))));
-	};
-
-	console.log('json', json);
 	return (
 		<div>
-			<input
-				style={{ display: 'none' }}
-				accept='.json'
-				ref={inputFile}
-				onChange={handleFileUpload}
-				type='file'
-			/>
-			<Button variant='warning' onClick={onButtonClick}>
-				Import Data
+			<Button variant='warning' onClick={togglePopup}>
+				<i className='fas fa-upload' /> Import Data
 			</Button>
+			{showPopup ? (
+				<Popup
+					togglePopup={togglePopup}
+					handleFileUpload={handleFileUpload}
+					fileChosen={fileChosen}
+					saveFile={saveFile}
+				/>
+			) : (
+				''
+			)}
 		</div>
 	);
 };

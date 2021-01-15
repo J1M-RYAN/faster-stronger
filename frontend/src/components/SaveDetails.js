@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Container, Form, Button, Row, Col, Collapse } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
-const SaveDetails = ({ setUserData }) => {
+const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 	const [height, setHeight] = useState(1.7);
 	const [open, setOpen] = useState(true);
 	const [age, setAge] = useState(45);
@@ -48,7 +48,12 @@ const SaveDetails = ({ setUserData }) => {
 	};
 
 	const saveLocally = (event) => {
+		event.preventDefault();
 		if (!isValidHeight(height) || !isValidWeight(weight)) {
+			return;
+		}
+		setOpen(!open);
+		if (!open) {
 			return;
 		}
 		const userData = {
@@ -60,9 +65,9 @@ const SaveDetails = ({ setUserData }) => {
 			isMale,
 		};
 		localStorage.setItem('userData', JSON.stringify(userData));
-		setOpen(!open);
-		event.preventDefault();
+
 		setUserData(userData);
+		setEnoughInfo(true);
 	};
 
 	return (
@@ -228,7 +233,15 @@ const SaveDetails = ({ setUserData }) => {
 					</div>
 				</Collapse>
 				<Button variant='primary' type='submit' onClick={saveLocally}>
-					{open ? 'Save Locally' : 'Edit Data'}
+					{open ? (
+						<>
+							<i className='fas fa-save' /> Save Locally
+						</>
+					) : (
+						<>
+							<i className='fas fa-edit' /> Edit Data
+						</>
+					)}
 				</Button>
 			</Form>
 		</Container>
