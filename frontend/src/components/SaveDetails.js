@@ -3,6 +3,8 @@ import { Container, Form, Button, Row, Col, Collapse } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
 const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 	const [height, setHeight] = useState(1.7);
+	const [heightFootOnly, setHeightFootOnly] = useState(3);
+	const [heightInchesOnly, setHeightInchesOnly] = useState(0);
 	const [open, setOpen] = useState(true);
 	const [age, setAge] = useState(45);
 	const [isMale, setIsMale] = useState(true);
@@ -12,6 +14,14 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 	const changeHeight = (event) => {
 		event.preventDefault();
 		setHeight(event.target.value);
+	};
+	const changeHeightFoot = (event) => {
+		event.preventDefault();
+		setHeightFootOnly(event.target.value);
+	};
+	const changeHeightInches = (event) => {
+		event.preventDefault();
+		setHeightInchesOnly(event.target.value);
 	};
 	const changeAge = (event) => {
 		event.preventDefault();
@@ -57,6 +67,8 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 			return;
 		}
 		const userData = {
+			heightFootOnly,
+			heightInchesOnly,
 			unitOfHeight,
 			unitOfWeight,
 			height,
@@ -114,7 +126,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 										onChange={changeHeight}
 									/>
 								) : (
-									<Form.Control as='select'>
+									<Form.Control as='select' onChange={changeHeightFoot}>
 										{[...Array(7)].map((value, index) => (
 											<option id={index + 1} key={index}>
 												{index + 1} Foot
@@ -125,7 +137,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 							</Col>
 							{unitOfHeight === 'Feet' ? (
 								<Col sm='2'>
-									<Form.Control as='select'>
+									<Form.Control as='select' onChange={changeHeightInches}>
 										{[...Array(12)].map((value, index) => (
 											<option id={index + 1} key={index}>
 												{index} {index !== 1 ? 'Inches' : 'Inch'}
@@ -134,7 +146,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 									</Form.Control>
 								</Col>
 							) : (
-								console.log('hi')
+								''
 							)}
 						</Form.Group>
 

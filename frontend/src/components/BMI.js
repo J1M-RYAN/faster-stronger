@@ -1,11 +1,21 @@
 import { React } from 'react';
 import { Container } from 'react-bootstrap';
+import { poundsToKg, footToMeters } from '../utilities/converters';
 const BMI = ({ userData }) => {
 	const enoughInfo =
 		userData.hasOwnProperty('height') && userData.hasOwnProperty('weight');
-	let bmi = 'Unknown';
+	let bmi = 0;
 	if (enoughInfo) {
-		bmi = (userData.weight / Math.pow(userData.height, 2)).toFixed(2);
+		let weightInkg =
+			userData.unitOfWeight === 'kg'
+				? userData.weight
+				: poundsToKg(userData.weight);
+		let heightInMeters =
+			userData.unitOfHeight === 'Meters'
+				? userData.height
+				: footToMeters(userData.heightFootOnly, userData.heightInchesOnly);
+		console.log('heightInMeters', heightInMeters);
+		bmi = (weightInkg / Math.pow(heightInMeters, 2)).toFixed(2);
 	}
 
 	return (

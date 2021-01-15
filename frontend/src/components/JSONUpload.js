@@ -11,9 +11,7 @@ const JSONUpload = ({ setUserData }) => {
 		setfileChosen(true);
 		const file = event.target.files[0];
 		const reader = new FileReader();
-		console.log('here');
 		reader.onload = (event) => {
-			// The file's text will be printed here
 			setFileData(event.target.result);
 		};
 
