@@ -35,3 +35,6 @@ body::-webkit-scrollbar-thumb {
 }
 .popupHeader {
 }
+.wide {
+	width: 100%;
+}

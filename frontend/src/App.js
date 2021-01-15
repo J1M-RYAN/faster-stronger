@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import SaveDetails from './components/SaveDetails';
 import Settings from './components/Settings';
 import BMI from './components/BMI';
+import NewFast from './components/NewFast';
 import { Container, Row, Card, Button } from 'react-bootstrap';
 
 const dogApiUrl = 'https://dog.ceo/api/breeds/image/random';
@@ -23,6 +24,7 @@ const App = () => {
 		<>
 			<Header />
 			<main>
+				<NewFast />
 				<BMI
 					userData={userData}
 					enoughInfo={enoughInfo}

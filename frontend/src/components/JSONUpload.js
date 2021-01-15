@@ -29,7 +29,7 @@ const JSONUpload = ({ setUserData }) => {
 
 	return (
 		<div>
-			<Button variant='warning' onClick={togglePopup}>
+			<Button className='wide' variant='warning' onClick={togglePopup}>
 				<i className='fas fa-upload' /> Import Data
 			</Button>
 			{showPopup ? (

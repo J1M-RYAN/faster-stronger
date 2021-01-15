@@ -35,7 +35,7 @@ const Settings = ({ setUserData, setEnoughInfo, userData, enoughInfo }) => {
 			</h2>
 			<Row>
 				<Col sm='2'>
-					<Button onClick={exportData}>
+					<Button className='wide' onClick={exportData}>
 						<i className='fas fa-download' /> Export Data
 					</Button>
 				</Col>
@@ -47,7 +47,7 @@ const Settings = ({ setUserData, setEnoughInfo, userData, enoughInfo }) => {
 					/>
 				</Col>
 				<Col sm='2'>
-					<Button variant='danger' onClick={togglePopupDelete}>
+					<Button className='wide' variant='danger' onClick={togglePopupDelete}>
 						<i className='fas fa-trash-alt' /> Delete Data
 					</Button>
 					{showPopupDelete ? (

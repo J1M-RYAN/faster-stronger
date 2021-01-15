@@ -173,7 +173,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 							<i Sex className='fas fa-venus-mars' /> Sex
 						</h4>
 						<Form.Group as={Row} controlId='formPlaintextEmail' inline>
-							<Col sm='2'>
+							<Col sm='2' xs='2'>
 								<Form.Check
 									type='radio'
 									id='Male'
@@ -182,7 +182,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 									checked={isMale}
 								/>
 							</Col>
-							<Col sm='2'>
+							<Col sm='2' xs='1'>
 								<Form.Check
 									type='radio'
 									id='Female'
@@ -244,17 +244,26 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 						</Form.Group>
 					</div>
 				</Collapse>
-				<Button variant='primary' type='submit' onClick={saveLocally}>
-					{open ? (
-						<>
-							<i className='fas fa-save' /> Save Locally
-						</>
-					) : (
-						<>
-							<i className='fas fa-edit' /> Edit Data
-						</>
-					)}
-				</Button>
+				<Row>
+					<Col sm='2'>
+						<Button
+							variant='primary'
+							type='submit'
+							onClick={saveLocally}
+							className='wide'
+						>
+							{open ? (
+								<>
+									<i className='fas fa-save' /> Save Locally
+								</>
+							) : (
+								<>
+									<i className='fas fa-edit' /> Edit Data
+								</>
+							)}
+						</Button>
+					</Col>
+				</Row>
 			</Form>
 		</Container>
 	);
