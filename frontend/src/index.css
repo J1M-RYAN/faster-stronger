@@ -29,12 +29,20 @@ body::-webkit-scrollbar-thumb {
 	margin: auto;
 	background: white;
 }
+
 .warningText {
 	color: red;
 	text-align: center;
 }
-.popupHeader {
-}
+
 .wide {
 	width: 100%;
+}
+@media only screen and (max-width: 1300px) {
+	.popupInner {
+		left: 15%;
+		right: 15%;
+		top: 15%;
+		bottom: 35%;
+	}
 }
