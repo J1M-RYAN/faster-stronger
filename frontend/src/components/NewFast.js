@@ -38,7 +38,7 @@ const NewFast = ({ userData, setUserData }) => {
 					</h4>
 				</Col>
 			</Row>
-			<Form.Group as={Row} controlId='formPlaintextEmail' inline>
+			<Form.Group as={Row} controlId='formPlaintextEmail' inline='true'>
 				<Col sm='2' xs='2'>
 					<Form.Check
 						type='radio'

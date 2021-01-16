@@ -12,6 +12,19 @@ const App = () => {
 			: JSON.parse(localStorage.getItem('userData'))
 	);
 	const [enoughInfo, setEnoughInfo] = useState(false);
+	if (userData.hasOwnProperty('currentFast')) {
+		if (
+			userData.currentFast.hasOwnProperty('startTime') &&
+			typeof userData.currentFast.startTime === 'string'
+		) {
+			let userDataCopy = JSON.parse(JSON.stringify(userData));
+			userDataCopy.currentFast.startTime = new Date(
+				userDataCopy.currentFast.startTime
+			);
+			setUserData(userDataCopy);
+			localStorage.setItem('userData', JSON.stringify(userDataCopy));
+		}
+	}
 
 	return (
 		<>

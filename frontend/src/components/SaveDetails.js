@@ -158,9 +158,9 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 							</Col>
 						</Form.Group>
 						<h4>
-							<i Sex className='fas fa-venus-mars' /> Sex
+							<i className='fas fa-venus-mars' /> Sex
 						</h4>
-						<Form.Group as={Row} controlId='formPlaintextEmail' inline>
+						<Form.Group as={Row} controlId='formPlaintextEmail' inline='true'>
 							<Col sm='2' xs='2'>
 								<Form.Check
 									type='radio'
@@ -188,7 +188,7 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 							<i className='fas fa-weight' /> Starting Weight{' '}
 						</h4>
 
-						<Form.Group as={Row} controlId='formPlaintextEmail' inline>
+						<Form.Group as={Row} controlId='formPlaintextEmail' inline='true'>
 							<Form.Label column sm='2'>
 								Unit
 							</Form.Label>
@@ -207,12 +207,12 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 							</Col>
 						</Form.Group>
 
-						<Form.Group as={Row} controlId='formPlaintextEmail' inline>
+						<Form.Group as={Row} controlId='formPlaintextEmail' inline='true'>
 							<Col sm='4'>
 								<RangeSlider
-									min={unitOfWeight === 'kg' ? '50' : '110'}
-									max={unitOfWeight === 'kg' ? '250' : '550'}
-									step={unitOfWeight === 'kg' ? '0.05' : '0.1'}
+									min={unitOfWeight === 'kg' ? 50 : 110}
+									max={unitOfWeight === 'kg' ? 250 : 550}
+									step={unitOfWeight === 'kg' ? 0.05 : 0.1}
 									value={weight}
 									onChange={(changeEvent) =>
 										setWeight(changeEvent.target.value)
