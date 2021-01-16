@@ -33,7 +33,6 @@ const SaveDetails = ({ setUserData, setEnoughInfo }) => {
 		setUnitOfHeight(event.target.value);
 	};
 	const handleUnitWeightChange = (event) => {
-		console.log('event target valiue', event.target.value);
 		if (unitOfWeight === event.target.value) return;
 		setUnitOfWeight(event.target.value);
 	};

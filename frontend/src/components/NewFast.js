@@ -1,8 +1,17 @@
 import { React, useState } from 'react';
 import { Container, Row, Col, Form, Button, Collapse } from 'react-bootstrap';
-const NewFast = () => {
+import DateTimePicker from 'react-datetime-picker';
+const NewFast = ({ userData, setUserData }) => {
+	const [startTime, setStartTime] = useState(new Date());
+	const [chosenEndTime, setChosenEndTime] = useState(new Date());
 	const [isEndTimeChosen, setIsEndTimeChosen] = useState(false);
-
+	const beginFast = () => {
+		let userDataCopy = JSON.parse(JSON.stringify(userData));
+		userDataCopy.currentFast = {};
+		userDataCopy.currentFast.startTime = startTime;
+		setUserData(userDataCopy);
+		localStorage.setItem('userData', JSON.stringify(userDataCopy));
+	};
 	return (
 		<Container className='py-3'>
 			<h2>
@@ -19,11 +28,7 @@ const NewFast = () => {
 			<Row>
 				<Col sm='2'>Start Date</Col>
 				<Col sm='2'>
-					<input type='date' id='startdate' name='startdate' />{' '}
-				</Col>
-				<Col sm='2'>Start Time (24hr)</Col>
-				<Col sm='2'>
-					<input type='time' id='starttime' name='starttime' />{' '}
+					<DateTimePicker value={startTime} onChange={setStartTime} />
 				</Col>
 			</Row>
 			<Row className='py-2'>
@@ -65,18 +70,19 @@ const NewFast = () => {
 					<Row>
 						<Col sm='2'>End Date</Col>
 						<Col sm='2'>
-							<input type='date' id='enddate' name='enddate' />{' '}
-						</Col>
-						<Col sm='2'>End Time (24hr)</Col>
-						<Col sm='2'>
-							<input type='time' id='endtime' name='endtime' />{' '}
+							<DateTimePicker
+								value={chosenEndTime}
+								onChange={setChosenEndTime}
+							/>
 						</Col>
 					</Row>
 				</div>
 			</Collapse>
 			<Row className='py-3'>
 				<Col sm='2'>
-					<Button className='wide'>Begin Fast</Button>
+					<Button className='wide' onClick={beginFast}>
+						<i className='fas fa-play-circle' /> Begin Fast
+					</Button>
 				</Col>
 			</Row>
 		</Container>

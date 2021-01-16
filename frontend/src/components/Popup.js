@@ -1,4 +1,4 @@
-import { React, useRef } from 'react';
+import { React } from 'react';
 import { Button, Container, Nav } from 'react-bootstrap';
 const PopupDelete = ({
 	togglePopup,
@@ -6,8 +6,6 @@ const PopupDelete = ({
 	fileChosen,
 	saveFile,
 }) => {
-	const fileInput = useRef(null);
-
 	return (
 		<div className='popup'>
 			<div className='popupInner'>
