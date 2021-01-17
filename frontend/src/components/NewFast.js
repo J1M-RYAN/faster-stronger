@@ -9,6 +9,10 @@ const NewFast = ({ userData, setUserData }) => {
 		let userDataCopy = JSON.parse(JSON.stringify(userData));
 		userDataCopy.currentFast = {};
 		userDataCopy.currentFast.startTime = startTime;
+		userDataCopy.currentFast.isEndTimeChosen = isEndTimeChosen;
+		if (isEndTimeChosen) {
+			userDataCopy.currentFast.chosenEndTime = chosenEndTime;
+		}
 		setUserData(userDataCopy);
 		localStorage.setItem('userData', JSON.stringify(userDataCopy));
 	};

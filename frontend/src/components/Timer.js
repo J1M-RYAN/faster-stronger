@@ -10,7 +10,12 @@ const Timer = ({ userData }) => {
 		seconds,
 		minutes,
 		hours,
-		days = 0;
+		days,
+		milsToEnd,
+		secsToEnd,
+		minsToEnd,
+		hoursToEnd,
+		daysToEnd = 0;
 	if (userData.hasOwnProperty('currentFast')) {
 		totalMillisecondDif =
 			currentTime.getTime() - userData.currentFast.startTime.getTime();
@@ -18,6 +23,14 @@ const Timer = ({ userData }) => {
 		minutes = Math.floor(totalMillisecondDif / 60000) % 60;
 		hours = Math.floor(totalMillisecondDif / 3600000) % 24;
 		days = Math.floor(totalMillisecondDif / 86400000);
+		if (userData.currentFast.isEndTimeChosen) {
+			milsToEnd =
+				userData.currentFast.chosenEndTime.getTime() - currentTime.getTime();
+			secsToEnd = Math.floor(milsToEnd / 1000) % 60;
+			minsToEnd = Math.floor(milsToEnd / 60000) % 60;
+			hoursToEnd = Math.floor(milsToEnd / 3600000) % 24;
+			daysToEnd = Math.floor(milsToEnd / 86400000);
+		}
 	}
 
 	return (
@@ -33,6 +46,7 @@ const Timer = ({ userData }) => {
 				<Col sm='4'>
 					{userData.hasOwnProperty('currentFast') ? (
 						<h2>
+							Time since fast began <br />
 							Total Millisec Dif:
 							{totalMillisecondDif}
 							<br />
@@ -44,6 +58,25 @@ const Timer = ({ userData }) => {
 							<br />
 							Days: {days}
 							<br />
+							{userData.currentFast.isEndTimeChosen ? (
+								<div>
+									Time until fast endd
+									<br />
+									Total Millisec Dif:
+									{milsToEnd}
+									<br />
+									Seconds: {secsToEnd}
+									<br />
+									Minutes: {minsToEnd}
+									<br />
+									Hours: {hoursToEnd}
+									<br />
+									Days: {daysToEnd}
+									<br />
+								</div>
+							) : (
+								''
+							)}
 						</h2>
 					) : (
 						'You must start a fast to see the time'
