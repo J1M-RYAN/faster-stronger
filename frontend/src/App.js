@@ -5,6 +5,7 @@ import Settings from './components/Settings';
 import BMI from './components/BMI';
 import NewFast from './components/NewFast';
 import Timer from './components/Timer';
+import CalorieCounter from './components/CalorieCounter';
 const App = () => {
 	const [userData, setUserData] = useState(
 		localStorage.getItem('userData') === null
@@ -21,6 +22,9 @@ const App = () => {
 			userDataCopy.currentFast.startTime = new Date(
 				userDataCopy.currentFast.startTime
 			);
+			userDataCopy.currentFast.chosenEndTime = new Date(
+				userDataCopy.currentFast.chosenEndTime
+			);
 			setUserData(userDataCopy);
 			localStorage.setItem('userData', JSON.stringify(userDataCopy));
 		}
@@ -30,6 +34,7 @@ const App = () => {
 		<>
 			<Header />
 			<main>
+				<CalorieCounter userData={userData} />
 				<Timer userData={userData} />
 				<NewFast userData={userData} setUserData={setUserData} />
 				<BMI

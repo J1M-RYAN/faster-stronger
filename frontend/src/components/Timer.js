@@ -43,41 +43,36 @@ const Timer = ({ userData }) => {
 				</Col>
 			</Row>
 			<Row>
-				<Col sm='4'>
+				<Col sm='6'>
 					{userData.hasOwnProperty('currentFast') ? (
-						<h2>
-							Time since fast began <br />
-							Total Millisec Dif:
-							{totalMillisecondDif}
-							<br />
-							Seconds: {seconds}
-							<br />
-							Minutes: {minutes}
-							<br />
-							Hours: {hours}
-							<br />
-							Days: {days}
-							<br />
+						<div>
+							<h2>
+								Fasting For <br />
+							</h2>
+							<h4>
+								{days} {days === 1 ? 'Day' : 'Days'}: {hours}{' '}
+								{hours === 1 ? 'Hour' : 'Hours'}: {minutes}{' '}
+								{minutes === 1 ? 'Minute' : 'Minutes'}: {seconds}{' '}
+								{seconds === 1 ? 'Second' : 'Seconds'}
+							</h4>
 							{userData.currentFast.isEndTimeChosen ? (
-								<div>
-									Time until fast endd
-									<br />
-									Total Millisec Dif:
-									{milsToEnd}
-									<br />
-									Seconds: {secsToEnd}
-									<br />
-									Minutes: {minsToEnd}
-									<br />
-									Hours: {hoursToEnd}
-									<br />
-									Days: {daysToEnd}
-									<br />
-								</div>
+								milsToEnd >= 0 ? (
+									<div>
+										<h2>Time Left</h2>
+										<h4>
+											{daysToEnd} {daysToEnd === 1 ? 'Day' : 'Days'}:{' '}
+											{hoursToEnd} {hoursToEnd === 1 ? 'Hour' : 'Hours'}:{' '}
+											{minsToEnd} {minsToEnd === 1 ? 'Minute' : 'Minutes'}:{' '}
+											{secsToEnd} {secsToEnd === 1 ? 'Second' : 'Seconds'}
+										</h4>
+									</div>
+								) : (
+									'times up!'
+								)
 							) : (
 								''
 							)}
-						</h2>
+						</div>
 					) : (
 						'You must start a fast to see the time'
 					)}
